@@ -23,7 +23,7 @@
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="javascript:void(0)" class="right-sidebar-toggle" data-sidebar-id="main-right-sidebar"><i class="fa fa-envelope"></i></a></li>
+                    <li><a href="javascript:void(0)" class="right-sidebar-toggle" data-sidebar-id="main-right-sidebar"></a></li>
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i></a>
                         <ul class="dropdown-menu dropdown-lg dropdown-content">
@@ -37,7 +37,7 @@
                                                             </span></a>
                                     </li>
                                     <li>
-                                        <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-at"></i></span>
+                                        <a href="#"><span class="notification-badge bg-primary"><i class="fa fa-"></i></span>
                                             <span class="notification-info"><b>John Doe</b> mentioned you in a post "Update v1.5".
                                                                 <small class="notification-date">06:07</small>
                                                             </span></a>

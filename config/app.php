@@ -150,7 +150,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-
+        Jimmyjs\ReportGenerator\ServiceProvider::class,
+        Reportico\Reportico\ReporticoServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -216,7 +217,11 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-
+        'PdfReport' => Jimmyjs\ReportGenerator\Facades\PdfReportFacade::class,
+        'ExcelReport' => Jimmyjs\ReportGenerator\Facades\ExcelReportFacade::class,
+        'CSVReport' => Jimmyjs\ReportGenerator\Facades\CSVReportFacade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 
 ];

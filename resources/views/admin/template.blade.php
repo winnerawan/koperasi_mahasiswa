@@ -69,5 +69,6 @@
     <script src="{{ asset("admin/assets/js/pages/dashboard.js") }}"></script>
     <script src="{{ asset("admin/assets/plugins/datatables/js/jquery.datatables.min.js") }}"></script>
     <script src="{{ asset("admin/assets/js/pages/table-data.js") }}"></script>
+        @yield('extra-script')
 </body>
 </html>

@@ -15,5 +15,12 @@ Route::get('profit', 'AdminAuth\ProfitController@index');
 Route::get('sales', 'AdminAuth\ProductController@sales');
 Route::get('sales_detail/{id}', 'AdminAuth\ProductController@sales_detail');
 Route::get('invoice/{id}', 'AdminAuth\ProductController@invoice');
+Route::get('report', 'AdminAuth\ReportController@index');
+Route::get('report_today', 'AdminAuth\ReportController@report_today');
+Route::get('report_weekly', 'AdminAuth\ReportController@report_weekly');
+Route::get('report_monthly', 'AdminAuth\ReportController@report_monthly');
+Route::get('report_yearly', 'AdminAuth\ReportController@report_yearly');
+Route::get('report_merchant/{id}', 'AdminAuth\ReportController@report_merchant_earning');
+
 
 

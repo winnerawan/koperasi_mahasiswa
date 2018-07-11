@@ -19,10 +19,12 @@
                     </a>
                     <ul class="sub-menu">
                         <li><a href="{{ url('admin/sales') }}">Data Penjualan</a></li>
-                        
+
                         <li><a href="{{ url('admin/profit') }}">Laba Koperasi</a></li>
-<!--                         <li><a href="{{ url('admin/profit') }}">Laba Koperasi</a></li>
- -->                    </ul>
+                        <li><a href="{{ url('admin/report') }}">Laporan</a></li>
+
+                    </ul>
+
                 </li>
                 <li class="menu-divider"></li>
 

@@ -29,6 +29,7 @@ class PageController extends Controller
 
     public function product_by_category($id)
     {
+
         $tax = Tax::all()->first();
         $categories = Category::all();
         $products = Product::where('category_id', '=', $id)->get();
@@ -37,6 +38,9 @@ class PageController extends Controller
 
     public function product_detail($id)
     {
+        if (Auth::guest()) {
+            return redirect('customer/login');
+        }
         $product = Product::find($id);
         $tax = Tax::all()->first();
         $customer = Auth::user();

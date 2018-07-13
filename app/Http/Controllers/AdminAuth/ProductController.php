@@ -92,10 +92,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        $currentSize = $product->category_id;
         $categories = Category::all();
         $merchants = Merchant::all();
+        $merchantCurrentSize = $product->merchant_id;
 
-        return view('admin.product.edit')->with(['product' => $product, 'categories' => $categories, 'merchants' => $merchants]);
+        return view('admin.product.edit')->with(['merchantCurrentSize' => $merchantCurrentSize, 'currentSize' => $currentSize, 'product' => $product, 'categories' => $categories, 'merchants' => $merchants]);
     }
 
     /**

@@ -22,9 +22,14 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Kategori Produk</label>
                     <div class="col-sm-10">
+
                         <select style="margin-bottom:5px;" class="form-control" name="category_id">
-                            @foreach($categories as $category)
-                                <option value='{{ $category->id }}'>{{ $category->name }}</option>
+                            @foreach ($categories as $category)
+                                @if ($category->id == $currentSize)
+                                    <option value="{{ $category->id }}" selected="selected">{{ $category->name }}</option>
+                                @else
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -33,8 +38,12 @@
                     <label class="col-sm-2 control-label">Penjual Produk</label>
                     <div class="col-sm-10">
                         <select style="margin-bottom:5px;" class="form-control" name="merchant_id">
-                            @foreach($merchants as $merchant )
-                               <option value='{{ $merchant->id }}'>{{ $merchant->name }}</option>
+                            @foreach ($merchants as $merchant)
+                                @if ($merchant->id == $merchantCurrentSize)
+                                    <option value="{{ $merchant->id }}" selected="selected">{{ $merchant->name }}</option>
+                                @else
+                                    <option value="{{ $merchant->id }}">{{ $merchant->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -68,7 +77,8 @@
                 <div class="form-group">
                     <label for="input-rounded" class="col-sm-2 control-label">Status Produk</label>
                     <div col-sm-10style="margin-left: 20px;" class="input-group col-sm-10">
-                        {{ Form::select('status', ['1' => 'Aktif', '0' => 'Non Aktif'], null, ['placeholder' => 'Status Produk?']) }}                     </div>
+                        {{ Form::select('status', ['1' => 'Aktif', '0' => 'Non Aktif'], ['placeholder' => 'Status Produk?']) }}
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success">Simpan</button>
                 {!! Form::close() !!}

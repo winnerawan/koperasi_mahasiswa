@@ -40,13 +40,15 @@ class PageController extends Controller
     {
         if (Auth::guest()) {
             return redirect('customer/login');
+        } else {
+
+            $product = Product::find($id);
+            $tax = Tax::all()->first();
+            $customer = Auth::user();
+            $categories = Category::all();
+            //dd($customer);
+            return view('front.product')->with(['tax' => $tax, 'product' => $product, 'categories' => $categories]);
         }
-        $product = Product::find($id);
-        $tax = Tax::all()->first();
-        $customer = Auth::user();
-        $categories = Category::all();
-        //dd($customer);
-        return view('front.product')->with(['tax' => $tax, 'product' => $product, 'categories' => $categories]);
     }
 
     public function about()

@@ -8,3 +8,4 @@ Route::post('pay', 'CustomerAuth\CartController@pay');
 Route::get('payment/{id}', 'CustomerAuth\CartController@payment')->name('payment');
 
 
+

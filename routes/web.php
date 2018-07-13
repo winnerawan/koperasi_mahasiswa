@@ -16,6 +16,7 @@ Route::get('/about', 'PageController@about');
 Route::get('/catalogue/{id}', 'PageController@product_by_category');
 Route::get('/product/{id}', 'PageController@product_detail');
 
+
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm');
   Route::post('/login', 'AdminAuth\LoginController@login');
@@ -56,6 +57,8 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset');
   Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm');
   Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
+
+
 });
 
 

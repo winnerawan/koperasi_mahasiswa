@@ -106,15 +106,25 @@
             <td colspan="2">
                 <table>
                     <tr>
-                        <td class="title">
-                            <img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">
+                        <!-- <td class="title">
+                            <img src="images/deptic.png" style="width:100%; max-width:300px;"> -->
+                            <div class="col-md-2 col-sm-6 col-xs-12">
+                            <div class="logo">
+                                <a href="{{ url('') }}">
+                                    <img src="{{ asset("frontend/img/logo/deptic.png") }}" alt="main logo"
+                                    style="width:50%; max-width:100px;">
+                                </a>
+                            </div>
+                        </div>
                         </td>
 
+
                         <td>
-                            No #: {{ $order->id}}<br>
+                        <div align="right">
+                            No: {{ $order->id}}<br>
                             Tanggal: {{ $order->created_at }}<br>
                         </td>
-                        
+                        </div>
                     </tr>
                 </table>
             </td>
@@ -126,15 +136,15 @@
                     <tr>
                         <td>
                            KOPMA<br>
-                            12345 Sunny Road<br>
-                            Sunnyville, CA 12345
+                            TEKNIK INFORMATIKA<br>
+                            UNIVERSITAS PGRI MADIUN
                         </td>
 
-                        <td>
+                        <!-- <td>
                             {{ config('app.name') }}<br>
                             {{ Auth::user()->name }}<br>
                             {{ Auth::user()->email }}
-                        </td>
+                        </td> -->
                     </tr>
                 </table>
             </td>

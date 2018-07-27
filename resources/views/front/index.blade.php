@@ -99,7 +99,7 @@
                                     <div class="footer-brief">
                                         <p>Koperasi Mahasiswa (KOPMA) adalah salah satu Unit Minat Bakat (UMB) yang ada di Universitas PGRI Madiun. Salah satu KOPMA yang ada pada Universitas PGRI Madiun adalah KOPMA Fakultas Teknik Prodi Teknik Informatika. KOPMA Teknik Informatika berada pada Lantai 3 kampus 3 Universitas PGRI Madiun. Kehadiran KOPMA sebagai wahana untuk latihan berwirausaha bagi mahasiswa.</p>
                                     </div>
-                                    <ul class="footer-social">
+                                   <!--  <ul class="footer-social">
                                         <li>
                                             <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
                                         </li>
@@ -108,10 +108,10 @@
                                         </li>
                                         <li>
                                             <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
-                                        </li>
-                                        <li>
+                                        </li> -->
+                                        <!-- <li>
                                             <a class="rss" href="" title="RSS"><i class="zmdi zmdi-rss"></i></a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>

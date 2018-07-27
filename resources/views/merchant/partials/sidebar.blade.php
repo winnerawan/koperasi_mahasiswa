@@ -6,7 +6,7 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu" id="side-menu">
-                <li class="menu-title">Navigation</li>
+                <li class="menu-title">HALLO</li>
                 {{--<li>--}}
                     {{--<a href="{{ url('merchant/home') }}">--}}
                         {{--<i class="fi-air-play"></i><span class="badge badge-danger badge-pill pull-right"></span> <span> Dashboard </span>--}}
@@ -14,6 +14,9 @@
                 {{--</li>--}}
 
 
+                <li>
+                   <a href="{{url('/merchant/sales')}}"><i class="fi-layout"></i><span> Info </span></a>
+                </li>
                 <li>
                     <a href="javascript: void(0);"><i class="fi-box"></i><span> Produk </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">

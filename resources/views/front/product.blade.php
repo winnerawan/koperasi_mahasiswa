@@ -121,7 +121,7 @@
                                                     <input type="text" value="01" name="qty" id="qty" class="cart-plus-minus-box">
                                                 </div>
                                             </div>
-                                            <div class="sin-pro-action f-right">
+                                            <!-- <div class="sin-pro-action f-right">
                                                 <ul class="action-button">
                                                     <li>
                                                         <a href="#" title="Wishlist" tabindex="0"><i class="zmdi zmdi-favorite"></i></a>
@@ -136,7 +136,7 @@
                                                         <a href="#" title="Add to cart" tabindex="0"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <hr>
                                         <!--  hr -->

@@ -158,4 +158,8 @@ class ProductController extends Controller
         $incomes = DB::select("SELECT * FROM orders INNER JOIN order_details ON order_details.order_id = orders.id LEFT JOIN products ON products.id = order_details.product_id WHERE products.merchant_id = " . Auth::user()->id." GROUP BY order_id");
         return view("merchant.income")->with(['incomes' => $incomes]);
     }
+    public function info()
+    { 
+        return view('merchant.info.index');
+    }
 }

@@ -32,7 +32,7 @@
                         {{--provides the based framework upon which plug-ins can built.--}}
                         {{--</p>--}}
 
-                        <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0"
+                        <table class="table table-striped table-bordered" cellspacing="0"
                                width="100%">
                             <thead>
                             <tr>

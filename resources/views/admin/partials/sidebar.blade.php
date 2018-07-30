@@ -96,14 +96,14 @@
                     </a>
 
                 </li>
-               <!--  <li>
+               <li>
                     <a href="javascript:void(0)">
                         <i class="menu-icon icon-star"></i><span>Promo</span><i class="accordion-icon fa fa-angle-left"></i>
                     </a>
                     <ul class="sub-menu">
                         <li><a href="{{ url('admin/promo') }}">Data Promo</a></li>
                     </ul>
-                </li> -->
+                </li>
                 <li class="menu-divider"></li>
                 {{--<li>--}}
                     {{--<a href="index.html">--}}

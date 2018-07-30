@@ -4,9 +4,89 @@
 
     @include('front.partials.slider')
 
-   
-
-
+    <!-- UP COMMING PRODUCT SECTION START -->
+    <div class="up-comming-product-section mb-80">
+        <div class="container">
+            <div class="row">
+                <!-- up-comming-pro -->
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="up-comming-pro gray-bg clearfix">
+                        <div class="up-comming-pro-img f-left">
+                            <a href="{{ url('product/' .$promos[0]->product->id) }}">
+                                <img src="{{ asset("images/products/" .$promos[0]->product->image) }}" alt="">
+                            </a>
+                        </div>
+                        <div class="up-comming-pro-info f-left">
+                            <h3>{{ $promos[0]->promo }} - <a href="{{ url('product/' .$promos[0]->product->id) }}">{{ $promos[0]->product->name }}</a></h3>
+                            <p>{{ $promos[0]->product->description }}</p>
+                            {{--<div class="up-comming-time">--}}
+                            {{--<div data-countdown="2017/01/15"></div>--}}
+                            {{--</div>--}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 hidden-sm col-xs-12">
+                    <div class="banner-item banner-1">
+                        <div class="ribbon-price">
+                            <span>{{ $promos[1]->product->price }}</span>
+                        </div>
+                        <div class="banner-img">
+                            <a href="{{ url('product/' .$promos[1]->product->id) }}"><img src="{{ asset("images/products/" .$promos[1]->product->image) }}" alt=""></a>
+                        </div>
+                        <div class="banner-info">
+                            <h3>{{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></h3>
+                            {{--<ul class="banner-featured-list">--}}
+                            {{--<li>--}}
+                            {{--<i class="zmdi zmdi-check"></i><span>Lorem ipsum dolor</span>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<i class="zmdi zmdi-check"></i><span>amet, consectetur</span>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<i class="zmdi zmdi-check"></i><span>adipisicing elitest,</span>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<i class="zmdi zmdi-check"></i><span>eiusmod tempor</span>--}}
+                            {{--</li>--}}
+                            {{--<li>--}}
+                            {{--<i class="zmdi zmdi-check"></i><span>labore et dolore.</span>--}}
+                            {{--</li>--}}
+                            {{--</ul>--}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- UP COMMING PRODUCT SECTION END -->
+    <!-- Feature -->
+    <section class="promo section-wrap pb-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3 feature">
+                    <i class="ui-cube feature__icon"></i>
+                    <div class="feature__holder">
+                        <h6 class="feature__title">{{ $promos[0]->title }}</h6>
+                        <span class="feature__text">{{ $promos[0]->text }}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 feature">
+                    <i class="ui-plane feature__icon"></i>
+                    <div class="feature__holder">
+                        <h6 class="feature__title">{{ $promos[1]->title }}</h6>
+                        <span class="feature__text">{{ $promos[1]->text }}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 feature">
+                    <i class="ui-pricetag feature__icon"></i>
+                    <div class="feature__holder">
+                        <h6 class="feature__title">{{ $promos[2]->title }}</h6>
+                        <span class="feature__text">{{ $promos[2]->text }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- PRODUCT TAB SECTION START -->
     <div class="product-tab-section section-bg-tb pt-80 pb-55">
         <div class="container">
@@ -55,7 +135,7 @@
                                             <a href="#"><i class="zmdi zmdi-star-half"></i></a>
                                             <a href="#"><i class="zmdi zmdi-star-outline"></i></a> -->
                                         </div>
-                                        <h3 class="pro-price">Rp. {{ $product->price + ($product->price * $tax->tax/100) }}</h3> 
+                                        <h3 class="pro-price">Rp. {{ $product->price + ($product->price * $tax->tax/100) }}</h3>
                                         <ul class="action-button">
                                             {{--<li>--}}
                                                 {{--<a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>--}}

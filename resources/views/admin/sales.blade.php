@@ -31,7 +31,7 @@
                                             <td><a href="{{ url('admin/sales_detail/'. $sale->id) }}">{{ $sale->created_at }}</a></td>
                                             <td>{{ $sale->customer->name }}</td>
                                             <td>{{ $sale->total_price }}</td>
-                                            <td><a href="{{ url('admin/invoice/'.$sale->id) }}">{{ $sale->id }}</a> </td>
+                                            <td><a href="{{ url('admin/generateNota/'.$sale->id) }}">{{ $sale->id }}</a> </td>
                                             {{--<td>{{ $od->product->price }}</td>--}}
                                             {{--@foreach($sales->order_detail as $od)--}}
                                             {{--<td>$o</td>--}}

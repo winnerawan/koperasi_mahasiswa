@@ -21,6 +21,7 @@ Route::get('report_weekly', 'AdminAuth\ReportController@report_weekly');
 Route::get('report_monthly', 'AdminAuth\ReportController@report_monthly');
 Route::get('report_yearly', 'AdminAuth\ReportController@report_yearly');
 Route::get('report_merchant/{id}', 'AdminAuth\ReportController@report_merchant_earning');
+Route::get('generateNota/{id}', 'AdminAuth\ReportController@generateNota');
 
 
 

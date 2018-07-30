@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
 use PdfReport;
+use App\Tax;
 
 class ReportController extends Controller
 {
@@ -123,5 +124,22 @@ class ReportController extends Controller
         return PdfReport::of($title, $meta, $orders, $columns)->stream();
     }
 
+
+    public function generateNota($id)
+    {
+        $tax = Tax::all()->first();
+        $order = Order::find($id);
+        $order_details = OrderDetail::where('order_id', '=', $id)->get();
+
+        foreach ($order_details as $od) {
+
+        }
+
+        $invoice = \ConsoleTVs\Invoices\Classes\Invoice::make()
+            ->addItem($od->product->name, $od->product->price + ($od->product->price * $tax->tax/100), $od->qty, $order->total_price)
+            ->number($id)->tax(0)->notes('Metode Pembayaran : ' . $order->payment->name)->customer([
+                'name' => $order->customer->name
+            ])->download('demo')->save('public/invoice.pdf');
+    }
 
 }

@@ -152,6 +152,7 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Jimmyjs\ReportGenerator\ServiceProvider::class,
         Reportico\Reportico\ReporticoServiceProvider::class,
+        ConsoleTVs\Invoices\InvoicesServiceProvider::class,
         /*
          * Package Service Providers...
          */

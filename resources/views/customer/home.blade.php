@@ -40,6 +40,7 @@
                                  <th>Jumlah</th>
                                  <th>Harga</th>
                                  <th>Total</th>
+                                <th>Tanggal</th>
                             </tr>
                             </thead>
 
@@ -51,6 +52,7 @@
                                     <td>{{ $od->qty }}</td>
                                     <td>{{ $od->price + ($od->price * $tax->tax/100) }}</td>
                                     <td>{{ ($od->price + ($od->price * $tax->tax/100)) * $od->qty }}</td>
+                                    <td>{{ $od->created_at }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

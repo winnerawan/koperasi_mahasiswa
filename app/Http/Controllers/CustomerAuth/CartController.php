@@ -201,7 +201,7 @@ class CartController extends Controller
 
         $order = Order::all()->where('customer_id', '=', Auth::user()->id)->first();
         if ($order!=null) {
-            $order_details = DB::select("SELECT p.name, od.qty, p.price FROM products as p INNER JOIN order_details as od ON p.id = od.product_id INNER JOIN orders ON orders.id = od.order_id WHERE orders.customer_id =". Auth::user()->id);
+            $order_details = DB::select("SELECT p.name, od.created_at, od.qty, p.price FROM products as p INNER JOIN order_details as od ON p.id = od.product_id INNER JOIN orders ON orders.id = od.order_id WHERE orders.customer_id =". Auth::user()->id);
             return view('customer.home')->with(['tax' => $tax, 'order_details' => $order_details, $payments]);
         }
         return view('customer.cart')->with(['tax' => $tax, 'payments' => $payments]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CustomerAuth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
 
@@ -59,5 +60,15 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('customer');
+    }
+
+    public function login(Request $request)
+    {
+        if ($this->guard('customer')->attempt(['nim' => $request->nim, 'password' => $request->password])) {
+            return redirect()->route('customer.home');
+        } else {
+            return redirect('/');
+        }
+
     }
 }

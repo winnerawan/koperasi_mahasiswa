@@ -39,7 +39,7 @@ class CustomerController extends Controller
     {
         $customers = new Customer;
         $customers->name = $request->name;
-        $customers->email = $request->email;
+        $customers->nim = $request->nim;
         $customers->password = bcrypt($request->password);
 
         $customers->save();
@@ -82,7 +82,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::find($id);
         $customers->name = $request->input('name');
-        $customers->email = $request->input('email');
+        $customers->nim = $request->input('nim');
         $customers->password = bcrypt($request->input('password'));
 
         $customers->save();

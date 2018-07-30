@@ -20,14 +20,14 @@
                                     <thead>
                                     <tr>
                                         <th>Nama Pelanggan</th>
-                                        <th>Email</th>
+                                        <th>NIM</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         @foreach($customers as $customer)
                                             <td><a href="{{ url('admin/customer/'. $customer->id .'/edit') }}">{{ $customer->name }}</a></td>
-                                            <td>{{ $customer->email }}</td>
+                                            <td>{{ $customer->nim }}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>

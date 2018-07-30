@@ -15,10 +15,10 @@
                             {{ csrf_field() }}
                             <div class="login-account p-30 box-shadow">
                                 <p>Jika Anda memiliki akun, silakan masuk.</p>
-                                <input type="text" name="email" placeholder="Alamat Email">
-                                @if ($errors->has('email'))
+                                <input type="text" name="nim" placeholder="NIM">
+                                @if ($errors->has('nim'))
                                 <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
+                                <strong>{{ $errors->first('nim') }}</strong>
                                 </span>
                                 @endif
                                 <input type="password" name="password" placeholder="Password">
@@ -34,27 +34,27 @@
                     </div>
                 </div>
                 <!-- new-customers -->
-                <div class="col-md-6">
-                    <div class="new-customers">
-                        <form role="form" method="POST" action="{{ url('/customer/register') }}">
-                            {{ csrf_field() }}
-                            <h6 class="widget-title border-left mb-50">Pelanggan Baru</h6>
-                            <div class="login-account p-30 box-shadow">
-                                <input type="text" name="name" placeholder="Nama...">
-                                <input type="text" name="email" placeholder="Alamat Email...">
-                                <input type="password" name="password" placeholder="Password">
-                                <input type="password" name="password_confirmation" placeholder="Konfirmasi Password">
+                {{--<div class="col-md-6">--}}
+                    {{--<div class="new-customers">--}}
+                        {{--<form role="form" method="POST" action="{{ url('/customer/register') }}">--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--<h6 class="widget-title border-left mb-50">Pelanggan Baru</h6>--}}
+                            {{--<div class="login-account p-30 box-shadow">--}}
+                                {{--<input type="text" name="name" placeholder="Nama...">--}}
+                                {{--<input type="text" name="email" placeholder="Alamat Email...">--}}
+                                {{--<input type="password" name="password" placeholder="Password">--}}
+                                {{--<input type="password" name="password_confirmation" placeholder="Konfirmasi Password">--}}
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button class="submit-btn-1 mt-20 btn-hover-1" type="submit" value="register">Register</button>
-                                    </div>
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-md-6">--}}
+                                        {{--<button class="submit-btn-1 mt-20 btn-hover-1" type="submit" value="register">Register</button>--}}
+                                    {{--</div>--}}
 
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</form>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

@@ -21,9 +21,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="input-Default" class="col-sm-2 control-label">Email Pelanggan</label>
+                    <label for="input-Default" class="col-sm-2 control-label">NIM</label>
                     <div class="col-sm-10">
-                        {{ Form::email('email', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+                        {{ Form::text('nim', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
                     </div>
                 </div>
 

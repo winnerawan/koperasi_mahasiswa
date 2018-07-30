@@ -26,6 +26,7 @@
                 <div class="col-12">
                     <div class="card-box table-responsive">
                         {{ $payment->name }}
+                        <p>{{ $payment->description }}</p>
                         {{--<h4 class="m-t-0 header-title">Buttons example</h4>--}}
                         {{--<p class="text-muted font-14 m-b-30">--}}
                         {{--The Buttons extension for DataTables provides a common set of options, API methods and--}}

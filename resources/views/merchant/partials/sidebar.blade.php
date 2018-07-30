@@ -15,7 +15,7 @@
 
 
                 <li>
-                   <a href="{{url('/merchant/sales')}}"><i class="fi-layout"></i><span> Info </span></a>
+                   <a href="{{url('/merchant/info')}}"><i class="fi-layout"></i><span> Info </span></a>
                 </li>
                 <li>
                     <a href="javascript: void(0);"><i class="fi-box"></i><span> Produk </span> <span class="menu-arrow"></span></a>

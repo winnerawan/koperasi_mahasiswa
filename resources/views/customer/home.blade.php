@@ -40,10 +40,9 @@
                                  <th>Jumlah</th>
                                  <th>Harga</th>
                                  <th>Total</th>
-                                <th>Tanggal</th>
+                                 <th>Tanggal</th>
                             </tr>
                             </thead>
-
 
                             <tbody>
                             @foreach($order_details as $od)

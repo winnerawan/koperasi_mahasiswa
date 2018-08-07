@@ -23,7 +23,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Produk</label>
                     <div class="col-sm-10">
-                        <select style="margin-bottom:5px;" class="form-control" name="category_id">
+                        <select style="margin-bottom:5px;" class="form-control" name="product_id">
                             @foreach($products as $product)
                                 <option value='{{ $product->id }}'>{{ $product->name }}</option>
                             @endforeach
@@ -34,9 +34,9 @@
                 <button type="submit" class="btn btn-success">Simpan</button>
                 {!! Form::close() !!}
                 <a href="{{ url()->previous() }}" class="btn btn-info" style="margin-top: 10px;">Cancel</a>
-                {!! Form::open(['route' => ['admin.promo.destroy', $promo->id], 'method' => 'DELETE']) !!}
-                <button type="submit" style="margin-top: 10px;" class="btn btn-danger"> <i class="fa fa-times"></i> Delete</button>
-                {!! Form::close() !!}
+                {{--{!! Form::open(['route' => ['admin.promo.destroy', $promo->id], 'method' => 'DELETE']) !!}--}}
+                {{--<button type="submit" style="margin-top: 10px;" class="btn btn-danger"> <i class="fa fa-times"></i> Delete</button>--}}
+                {{--{!! Form::close() !!}--}}
             </div>
         </div>
     </div>

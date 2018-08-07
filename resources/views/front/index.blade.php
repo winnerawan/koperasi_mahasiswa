@@ -34,24 +34,8 @@
                             <a href="{{ url('product/' .$promos[1]->product->id) }}"><img src="{{ asset("images/products/" .$promos[1]->product->image) }}" alt=""></a>
                         </div>
                         <div class="banner-info">
-                            <h3>{{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></h3>
-                            {{--<ul class="banner-featured-list">--}}
-                            {{--<li>--}}
-                            {{--<i class="zmdi zmdi-check"></i><span>Lorem ipsum dolor</span>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                            {{--<i class="zmdi zmdi-check"></i><span>amet, consectetur</span>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                            {{--<i class="zmdi zmdi-check"></i><span>adipisicing elitest,</span>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                            {{--<i class="zmdi zmdi-check"></i><span>eiusmod tempor</span>--}}
-                            {{--</li>--}}
-                            {{--<li>--}}
-                            {{--<i class="zmdi zmdi-check"></i><span>labore et dolore.</span>--}}
-                            {{--</li>--}}
-                            {{--</ul>--}}
+                            <h3><font color="#FF7F00"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
+
                         </div>
                     </div>
                 </div>
@@ -60,33 +44,7 @@
     </div>
     <!-- UP COMMING PRODUCT SECTION END -->
     <!-- Feature -->
-    <section class="promo section-wrap pb-0">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-3 feature">
-                    <i class="ui-cube feature__icon"></i>
-                    <div class="feature__holder">
-                        <h6 class="feature__title">{{ $promos[0]->title }}</h6>
-                        <span class="feature__text">{{ $promos[0]->text }}</span>
-                    </div>
-                </div>
-                <div class="col-md-3 feature">
-                    <i class="ui-plane feature__icon"></i>
-                    <div class="feature__holder">
-                        <h6 class="feature__title">{{ $promos[1]->title }}</h6>
-                        <span class="feature__text">{{ $promos[1]->text }}</span>
-                    </div>
-                </div>
-                <div class="col-md-3 feature">
-                    <i class="ui-pricetag feature__icon"></i>
-                    <div class="feature__holder">
-                        <h6 class="feature__title">{{ $promos[2]->title }}</h6>
-                        <span class="feature__text">{{ $promos[2]->text }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- PRODUCT TAB SECTION START -->
     <div class="product-tab-section section-bg-tb pt-80 pb-55">
         <div class="container">
@@ -97,17 +55,7 @@
                         <h6>Produk berdasarkan semua kategori,</h6>
                     </div>
                 </div>
-                {{--<div class="col-md-6 col-sm-12 col-xs-12">--}}
-                    {{--<div class="pro-tab-menu text-right">--}}
-                        {{--<!-- Nav tabs -->--}}
-                        {{--<ul class="" >--}}
-                            {{--<li class="active"><a href="#popular-product" data-toggle="tab">Popular Products </a></li>--}}
-                            {{--<li><a href="#new-arrival" data-toggle="tab">New Arrival</a></li>--}}
-                            {{--<li><a href="#best-seller"  data-toggle="tab">Best Seller</a></li>--}}
-                            {{--<li><a href="#special-offer"  data-toggle="tab">Special Offer</a></li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+
             </div>
             <div class="product-tab">
                 <!-- Tab panes -->

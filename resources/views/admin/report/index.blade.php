@@ -109,20 +109,37 @@
     {{--</script>--}}
 
     <script type="text/javascript">
-        var urlmenu = document.getElementById('report');
-        urlmenu.onchange = function() {
-            console.log(urlmenu.value);
-            if (urlmenu.value == 1) {
-                window.open('http://localhost:8000/admin/report_today', '_blank');
-            } else if (urlmenu.value == 2) {
-                window.open('http://localhost:8000/admin/report_weekly', '_blank');
-            } else if (urlmenu.value == 3) {
-                window.open('http://localhost:8000/admin/report_monthly', '_blank');
-            } else if (urlmenu.value == 4) {
-                window.open('http://localhost:8000/admin/report_yearly', '_blank');
+        var url = document.getElementById('report');
+        url.onchange = function() {
+            console.log(url.value);
+            if (url.value == 1) {
+            window.open('http://localhost:8000/admin/report_today', '_blank');
+            } else if (url.value == 2) {
+            window.open('http://localhost:8000/admin/report_weekly', '_blank');
+            } else if (url.value == 3) {
+            window.open('http://localhost:8000/admin/report_monthly', '_blank');
+            } else if (url.value == 4) {
+            window.open('http://localhost:8000/admin/report_yearly', '_blank');
             }
         }
     </script>
+    {{--<script type="text/javascript">--}}
+        {{--function report() {--}}
+            {{--var url = document.getElementById('report');--}}
+            {{--urlmenu.onchange = function() {--}}
+                {{--console.log(url.value)--}}
+                {{--if (url.value == 1) {--}}
+                    {{--window.open('http://localhost:8000/admin/report_today', '_blank');--}}
+                {{--} else if (urlmenu.value == 2) {--}}
+                    {{--window.open('http://localhost:8000/admin/report_weekly', '_blank');--}}
+                {{--} else if (urlmenu.value == 3) {--}}
+                    {{--window.open('http://localhost:8000/admin/report_monthly', '_blank');--}}
+                {{--} else if (urlmenu.value == 4) {--}}
+                    {{--window.open('http://localhost:8000/admin/report_yearly', '_blank');--}}
+                {{--}--}}
+            {{--}--}}
+        {{--}--}}
+    {{--</script>--}}
 
     <script type="text/javascript">
         var urlmenu = document.getElementById('report_merchant');

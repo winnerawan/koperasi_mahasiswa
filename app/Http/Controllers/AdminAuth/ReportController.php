@@ -18,85 +18,97 @@ class ReportController extends Controller
     public function index()
     {
         $arr = [ "--pilih laporan--", "Hari ini", "Minggu ini", "Bulan ini", "Tahun ini"];
+//        $merchants = Merchant::join('products', 'products.id', '=', 'products.merchant_id')->join('order_details', 'order_details.product_id', '=', 'products.merchant_id')->toSql();
         $merchants = Merchant::all();
-
+//        dd($arr);
         return view('admin.report.index')->with(['dates' => $arr, 'merchants' => $merchants]);
     }
 
     public function report_today()
     {
-        // Report title
-        $title = 'Laporan Penjualan Hari Ini';
-        $meta = [];
-//        $orders = DB::select("SELECT o.id, c.name, p.name, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE DATE(o.created_at) = CURDATE()");
-        $orders = Order::select(['customers.name', 'payments.name as pembayaran', 'orders.total_price','orders.created_at'])->join('customers', 'customers.id', '=', 'orders.customer_id')->join('payments', 'payments.id', '=', 'orders.payment_id')->whereDate('orders.created_at', '=', Carbon::today());
-        $columns = [
-//            'id' => 'id',
-            'Pembeli' => 'name',
-            'Pembayaran' => 'pembayaran',
-            'Total' =>  'total_price',
-            'Tanggal' => 'created_at'
-        ];
+        $orders = DB::select("SELECT o.id, c.name as nama, p.name as pembayaran, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE DATE(o.created_at) = CURDATE()");
+//        $orders = Order::select(['customers.name', 'payments.name as pembayaran', 'orders.total_price','orders.created_at'])->join('customers', 'customers.id', '=', 'orders.customer_id')->join('payments', 'payments.id', '=', 'orders.payment_id')->whereDate('orders.created_at', '=', Carbon::today());
 
-//        return $orders;
-        return PdfReport::of($title, $meta, $orders, $columns)->stream();
+        $header = array('No', 'Pembeli', 'Pembayaran', 'Total', "Tanggal");
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableSales($fpdf, $header, $orders);
+        $this->totalSales($fpdf, $orders);
+        $this->ttd($fpdf);
+        $fpdf->Output();
+
     }
 
     public function report_weekly()
     {
 // Report title
-        $title = 'Laporan Penjualan Hari Ini';
-        $meta = [];
-//        $orders = DB::select("SELECT o.id, c.name, p.name, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE DATE(o.created_at) = CURDATE()");
-        $orders = Order::select(['customers.name', 'payments.name as pembayaran', 'orders.total_price','orders.created_at'])->join('customers', 'customers.id', '=', 'orders.customer_id')->join('payments', 'payments.id', '=', 'orders.payment_id')->whereBetween('orders.created_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()]);
-        $columns = [
-//            'id' => 'id',
-            'Pembeli' => 'name',
-            'Pembayaran' => 'pembayaran',
-            'Total' =>  'total_price',
-            'Tanggal' => 'created_at'
-        ];
 
-//        return $orders;
-        return PdfReport::of($title, $meta, $orders, $columns)->stream();
+        $start = Carbon::now()->startOfWeek();
+        $end = Carbon::now()->endOfWeek();
+        $orders = DB::select("SELECT o.id, c.name as nama, p.name as pembayaran, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE o.created_at BETWEEN  '$start' AND '$end'");
+        $header = array('No', 'Pembeli', 'Pembayaran', 'Total', "Tanggal");
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableSales($fpdf, $header, $orders);
+        $this->totalSales($fpdf, $orders);
+        $this->ttd($fpdf);
+        $fpdf->Output();
     }
 
     public function report_monthly()
     {
-// Report title
-        $title = 'Laporan Penjualan Hari Ini';
-        $meta = [];
-//        $orders = DB::select("SELECT o.id, c.name, p.name, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE DATE(o.created_at) = CURDATE()");
-        $orders = Order::select(['customers.name', 'payments.name as pembayaran', 'orders.total_price','orders.created_at'])->join('customers', 'customers.id', '=', 'orders.customer_id')->join('payments', 'payments.id', '=', 'orders.payment_id')->whereBetween('orders.created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()]);
-        $columns = [
-//            'id' => 'id',
-            'Pembeli' => 'name',
-            'Pembayaran' => 'pembayaran',
-            'Total' =>  'total_price',
-            'Tanggal' => 'created_at'
-        ];
+        $start = Carbon::now()->startOfMonth();
+        $end = Carbon::now()->endOfMonth();
+        $orders = DB::select("SELECT o.id, c.name as nama, p.name as pembayaran, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE o.created_at BETWEEN  '$start' AND '$end'");
 
-//        return $orders;
-        return PdfReport::of($title, $meta, $orders, $columns)->stream();
+        $header = array('No', 'Pembeli', 'Pembayaran', 'Total', "Tanggal");
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableSales($fpdf, $header, $orders);
+        $this->totalSales($fpdf, $orders);
+        $this->ttd($fpdf);
+        $fpdf->Output();
     }
 
     public function report_yearly()
     {
 // Report title
-        $title = 'Laporan Penjualan Hari Ini';
-        $meta = [];
-//        $orders = DB::select("SELECT o.id, c.name, p.name, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE DATE(o.created_at) = CURDATE()");
-        $orders = Order::select(['customers.name', 'payments.name as pembayaran', 'orders.total_price','orders.created_at'])->join('customers', 'customers.id', '=', 'orders.customer_id')->join('payments', 'payments.id', '=', 'orders.payment_id')->whereBetween('orders.created_at', [Carbon::now()->startOfYear(),Carbon::now()->endOfYear()]);
-        $columns = [
-//            'id' => 'id',
-            'Pembeli' => 'name',
-            'Pembayaran' => 'pembayaran',
-            'Total' =>  'total_price',
-            'Tanggal' => 'created_at'
-        ];
 
-//        return $orders;
-        return PdfReport::of($title, $meta, $orders, $columns)->stream();
+        $start = Carbon::now()->startOfYear();
+        $end = Carbon::now()->endOfYear();
+        $orders = DB::select("SELECT o.id, c.name as nama, p.name as pembayaran, o.total_price, o.created_at FROM `orders` as o INNER JOIN customers as c ON c.id = o.customer_id INNER JOIN payments as p ON p.id = o.payment_id WHERE o.created_at BETWEEN  '$start' AND '$end'");
+
+        $header = array('No', 'Pembeli', 'Pembayaran', 'Total', "Tanggal");
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableSales($fpdf, $header, $orders);
+        $this->totalSales($fpdf, $orders);
+        $this->ttd($fpdf);
+        $fpdf->Output();
     }
 
     public function report_merchant_earning($id)
@@ -117,6 +129,7 @@ class ReportController extends Controller
         $fpdf->Ln();
 
         $this->TableMerchantEarning($fpdf, $header, $orders);
+        $this->total($fpdf, $orders);
         $this->ttd($fpdf);
 
         $fpdf->Output();
@@ -191,11 +204,42 @@ class ReportController extends Controller
         $fpdf->Footer();
     }
 
+    public function total(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $data)
+    {
+        $total = 0;
+        $sum = 0;
+        foreach ($data as $row) {
+            $total = $row->harga * $row->jumlah;
+            $sum += $total;
+        }
+        $total += $total;
+//        $total = array_sum(array_column($data, 'harga'));
+        $fpdf->Cell(-20, 6, "TOTAL ", 'LR', 0, 'R', 0);
+        $fpdf->Cell(0, 6, "Rp. " . $sum, 'LBT', 2, 'R', 1);
+
+    }
+
+    public function totalSales(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $data)
+    {
+        $total = 0;
+        $sum = 0;
+        foreach ($data as $row) {
+            $price = str_replace(",", "", $row->total_price);
+            $total = doubleval($price);
+            $sum += $total;
+        }
+        $total += $total;
+//        $total = array_sum(array_column($data, 'harga'));
+        $fpdf->Cell(-21, 6, "TOTAL ", 'LR', 0, 'R', 0);
+        $fpdf->Cell(0, 6, "Rp. " . $sum, 'LBT', 2, 'R', 1);
+
+    }
+
     // Colored table
     public function TableMerchantEarning(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $header, $data)
     {
         // Colors, line width and bold font
-        $fpdf->SetFillColor(102, 179, 255);
+        $fpdf->SetFillColor(128, 191, 255);
 
         $fpdf->SetLineWidth(.3);
         $fpdf->SetFont('', 'B');
@@ -217,6 +261,36 @@ class ReportController extends Controller
             $fpdf->Cell($w[4], 6, $row->jumlah, 'LR', 0, 'R', $fill);
             $fpdf->Cell($w[5], 6, $row->harga * $row->jumlah, 'LR', 0, 'R', $fill);
             $fpdf->Cell($w[6], 6, Carbon::parse($row->tanggal)->format('d-M-Y'), 'LR', 0, 'R', $fill);
+            $fpdf->Ln();
+        }
+        // Closing line
+        $fpdf->Cell(array_sum($w), 0, '', 'T');
+    }
+
+    // Colored table
+    public function TableSales(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $header, $data)
+    {
+        // Colors, line width and bold font
+        $fpdf->SetFillColor(128, 191, 255);
+
+        $fpdf->SetLineWidth(.3);
+        $fpdf->SetFont('', 'B');
+        // Header
+        $w = array(10, 40, 35, 23, 21);
+        for ($i = 0; $i < count($header); $i++)
+            $fpdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
+        $fpdf->Ln();
+
+        $fpdf->SetTextColor(0);
+        $fpdf->SetFont('');
+        // Data
+        $fill = false;
+        foreach ($data as $x => $row) {
+            $fpdf->Cell($w[0], 6, $x+1, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[1], 6, $row->nama, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[2], 6, $row->pembayaran, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[3], 6, $row->total_price, 'LR', 0, 'R', $fill);
+            $fpdf->Cell($w[4], 6, Carbon::parse($row->created_at)->format('d-M-Y'), 'LR', 0, 'R', $fill);
             $fpdf->Ln();
         }
         // Closing line

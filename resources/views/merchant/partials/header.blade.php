@@ -32,6 +32,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                         <!-- item-->
+                        <a href="{{ url('/merchant/change_password') }}" class="dropdown-item notify-item">
+                            <i class="fi-lock"></i> <span>Ubah Password</span>
+                        </a>
                         <a href="{{ url('/merchant/logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();" class="dropdown-item notify-item">
                             <i class="fi-power"></i> <span>Logout</span>

@@ -48,10 +48,9 @@
                                 <h5 class="text-overflow"><small>{{ Auth::user()->name }}</small> </h5>
                             </div>
 
-                            <!-- item-->
-                            {{--<a href="javascript:void(0);" class="dropdown-item notify-item">--}}
-                                {{--<i class="zmdi zmdi-account-circle"></i> <span>Profile</span>--}}
-                            {{--</a>--}}
+                            <a href="{{ url('/customer/change_password') }}" class="dropdown-item notify-item">
+                                <i class="zmdi zmdi-account-circle"></i> <span>Ubah Password</span>
+                            </a>
 
 
                             <!-- item-->

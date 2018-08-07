@@ -25,7 +25,11 @@
                     <div class="col-sm-10">
                         <select style="margin-bottom:5px;" class="form-control" name="product_id">
                             @foreach($products as $product)
-                                <option value='{{ $product->id }}'>{{ $product->name }}</option>
+                                @if ($product->id == $currentPromo)
+                                    <option value="{{ $product->id }}" selected="selected">{{ $product->name }}</option>
+                                @else
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>

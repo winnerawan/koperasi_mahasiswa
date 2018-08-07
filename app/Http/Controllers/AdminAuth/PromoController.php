@@ -62,8 +62,9 @@ class PromoController extends Controller
     public function edit($id)
     {
         $promo = Promo::find($id);
+        $currentPromo = $promo->product_id;
         $products = Product::all();
-        return view('admin.promo.edit')->with(['promo' => $promo, 'products' => $products]);
+        return view('admin.promo.edit')->with(['currentPromo' => $currentPromo, 'promo' => $promo, 'products' => $products]);
     }
 
     /**

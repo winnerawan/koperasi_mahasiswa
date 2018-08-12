@@ -143,15 +143,23 @@ class ReportController extends Controller
         $order = Order::find($id);
         $order_details = OrderDetail::where('order_id', '=', $id)->get();
 
-        foreach ($order_details as $od) {
 
+//        dd($order_details);
+//        $invoice = \ConsoleTVs\Invoices\Classes\Invoice::make()
+//            ->addItem($od->product->name, $od->product->price + ($od->product->price * $tax->tax/100), $od->qty, $order->total_price)
+//            ->number($id)->tax(0)->notes('Metode Pembayaran : ' . $order->payment->name)->customer([
+//                'name' => $order->customer->name
+//            ])->download('demo');
+
+        $invoice = \ConsoleTVs\Invoices\Classes\Invoice::make()->number($id)->tax(0)->notes('Metode Pembayaran : ' . $order->payment->name)->customer([
+                'name' => $order->customer->name]);
+        foreach ($order_details as $od) {
+            $invoice->addItem($od->product->name, $od->product->price + ($od->product->price * $tax->tax/100), $od->qty, $order->total_price);
         }
 
-        $invoice = \ConsoleTVs\Invoices\Classes\Invoice::make()
-            ->addItem($od->product->name, $od->product->price + ($od->product->price * $tax->tax/100), $od->qty, $order->total_price)
-            ->number($id)->tax(0)->notes('Metode Pembayaran : ' . $order->payment->name)->customer([
-                'name' => $order->customer->name
-            ])->download('demo')->save('public/invoice.pdf');
+        $invoice->download('nota');
+
+
     }
 
 

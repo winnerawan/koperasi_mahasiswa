@@ -26,7 +26,6 @@
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
                                         <th>Stok</th>
-
                                     </tr>
                                     </thead>
                                     <tbody>

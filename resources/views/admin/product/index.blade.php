@@ -26,6 +26,7 @@
                                         <th>Deskripsi</th>
                                         <th>Harga</th>
                                         <th>Stok</th>
+                                        <th>Gambar</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -42,7 +43,11 @@
                                             <td>{{ substr($product->description, 0, 40) }}</td>
                                             <td>Rp. {{ $product->price }}</td>
                                             <td>{{ $product->quantity }}</td>
-
+                                            <td>
+                                                <img src="{{ asset("images/products/". $product->image) }}" width="30px;" height="30px;">
+                                                {{--<a href="#" data-title="{{ $product->title }}" value="{{ action('AdminAuth\ProductController@showImage', ['id' => $product->id]) }}" class="btn btn-sm btn-info modalMd" data-id="{{ $product->id }}" data-toggle="modal" data-target="#modalMd">--}}
+                                                    {{--<i id="img-btn" class="fa fa-eye"></i></a>--}}
+                                            </td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -55,5 +60,31 @@
         </div>
     </div><!-- Main Wrapper -->
 
+
+    {{--<div class="modal fade" id="modalMd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--}}
+        {{--<div class="modal-dialog" role="document">--}}
+            {{--<div class="modal-content">--}}
+                {{--<div class="modal-header">--}}
+                    {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--}}
+                    {{--<h4 class="modal-title" id="modalMdTitle"></h4>--}}
+                {{--</div>--}}
+                {{--<div class="modal-body">--}}
+                    {{--<div class="modalError"></div>--}}
+                    {{--<div id="modalMdContent"></div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+    {{--<script type="text/javascript">--}}
+
+        {{--$(document).on('ajaxComplete ready', function () {--}}
+            {{--$('.modalMd').off('click').on('click', function () {--}}
+                {{--$('#modalMdContent').load($(this).attr('image'));--}}
+                {{--$('#modalMdTitle').html($(this).data('title'));--}}
+            {{--});--}}
+        {{--});--}}
+
+    {{--</script>--}}
 
 @endsection

@@ -181,4 +181,13 @@ class ProductController extends Controller
 
         return view('admin.invoice')->with(['tax' => $tax, 'order' => $order, 'order_details' => $order_details]);
     }
+
+    public function showImage($id)
+    {
+        $p = Product::find($id);
+        return response()->json([
+            'type' => 'success',
+            'data' => $p,
+        ]);
+    }
 }

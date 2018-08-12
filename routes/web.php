@@ -15,6 +15,8 @@ Route::get('/', 'PageController@index');
 Route::get('/about', 'PageController@about');
 Route::get('/catalogue/{id}', 'PageController@product_by_category');
 Route::get('/product/{id}', 'PageController@product_detail');
+Route::get('/product_promo/{id}', 'PageController@product_promo_detail');
+
 
 
 Route::group(['prefix' => 'admin'], function () {

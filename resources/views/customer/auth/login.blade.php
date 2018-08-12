@@ -27,7 +27,7 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                                <p><small><a href="{{ url('/customer/password/reset') }}">Lupa password?</a></small></p>
+                                <!-- <p><small><a href="{{ url('/customer/password/reset') }}">Lupa password?</a></small></p> -->
                                 <button class="submit-btn-1 btn-hover-1" type="submit">masuk</button>
                             </div>
                         </form>

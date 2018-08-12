@@ -34,7 +34,7 @@
                             <a href="{{ url('product/' .$promos[1]->product->id) }}"><img src="{{ asset("images/products/" .$promos[1]->product->image) }}" alt=""></a>
                         </div>
                         <div class="banner-info">
-                            <h3><font color="#FF7F00"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
+                            <h3><font color="#7a7979"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
 
                         </div>
                     </div>

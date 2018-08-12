@@ -1,5 +1,5 @@
 <!-- START SLIDER AREA -->
-<div class="slider-area bg-3 bg-opacity-black-50s ptb-150 mb-80">
+<div class="slider-area bg-3 bg-opacity-black-60 ptb-150 mb-80">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.5s">
                         <h2 class="slider2-title-3">KOPMA PRODI TEKNIK INFORMATIKA</h2>
-                        <h1 class="slider2-title-3">BUKA TIAP HARI SENIN-SABTU (07.00-17.00)</h1>
+                        <h1 class="slider2-title-3">BUKA TIAP HARI SENIN-SABTU (08.00-15.00)</h1>
                     </div>
                     {{--<div class="slider-button wow fadeInUp" data-wow-duration="1s" data-wow-delay="2.5s">--}}
                         {{--<a href="#" class="button extra-small button-white">--}}

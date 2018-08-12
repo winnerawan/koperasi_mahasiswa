@@ -19,16 +19,16 @@
                 {{ $invoice->business_details->get('location') }}<br/>
             </div>
             <div style="margin-left:300pt; margin-top: 10px;">
-                <b>Date: </b> {{ $invoice->date->formatLocalized('%A %d %B %Y') }}<br />
+                <b>Hari,Tanggal: </b> {{ $invoice->date->formatLocalized('%A %d %B %Y') }}<br />
                 @if ($invoice->number)
-                    <b>Invoice #: </b> {{ $invoice->number }}
+                    <b>No Nota: </b> {{ $invoice->number }}
                 @endif
                 <br />
             </div>
         </div>
-        <br />
+        <!-- <br />
         <h2>{{ $invoice->name }} {{ $invoice->number ? '#' . $invoice->number : '' }}</h2>
-        <div style="clear:both; position:relative;">
+ -->        <div style="clear:both; position:relative;">
             {{--<div style="position:absolute; left:0pt; width:250pt;">--}}
                 {{--<h4>Business Details:</h4>--}}
                 {{--<div class="panel panel-default">--}}
@@ -53,11 +53,11 @@
                 </div>
             </div>
         </div>
-        <h4>Items:</h4>
+        <h4>Barang:</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>No</th>
                     <th>Produk</th>
                     <th>Harga</th>
                     <th>Jumlah</th>
@@ -79,7 +79,7 @@
         <div style="clear:both; position:relative;">
             @if($invoice->notes)
                 <div style="position:absolute; left:0pt; width:250pt;">
-                    <h4>Notes:</h4>
+                    <h4>Keterangan:</h4>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {{ $invoice->notes }}
@@ -95,14 +95,14 @@
                             <td><b>Subtotal</b></td>
                             <td>{{ $invoice->formatCurrency()->symbol }} {{ $invoice->subTotalPriceFormatted() }}</td>
                         </tr>
-                        <tr>
+                       <!--  <tr>
                             <td>
                                 <b>
-                                    Taxes {{ $invoice->tax_type == 'percentage' ? '(' . $invoice->tax . '%)' : '' }}
+                                    PPN {{ $invoice->tax_type == 'percentage' ? '(' . $invoice->tax . '%)' : '' }}
                                 </b>
                             </td>
                             <td>{{ $invoice->formatCurrency()->symbol }} {{ $invoice->taxPriceFormatted() }}</td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td><b>TOTAL</b></td>
                             <td><b>{{ $invoice->formatCurrency()->symbol }} {{ $invoice->totalPriceFormatted() }}</b></td>

@@ -12,12 +12,12 @@
                 <div class="col-md-8 col-sm-12 col-xs-12">
                     <div class="up-comming-pro gray-bg clearfix">
                         <div class="up-comming-pro-img f-left">
-                            <a href="{{ url('product/' .$promos[0]->product->id) }}">
+                            <a href="{{ url('product_promo/' .$promos[0]->product->id) }}">
                                 <img src="{{ asset("images/products/" .$promos[0]->product->image) }}" alt="">
                             </a>
                         </div>
                         <div class="up-comming-pro-info f-left">
-                            <h3>{{ $promos[0]->promo }} - <a href="{{ url('product/' .$promos[0]->product->id) }}">{{ $promos[0]->product->name }}</a></h3>
+                            <h3>{{ $promos[0]->promo }} - <a href="{{ url('product_promo/' .$promos[0]->product->id) }}">{{ $promos[0]->product->name }}</a></h3>
                             <p>{{ $promos[0]->product->description }}</p>
                             {{--<div class="up-comming-time">--}}
                             {{--<div data-countdown="2017/01/15"></div>--}}
@@ -31,10 +31,14 @@
                             <span>{{ $promos[1]->product->price }}</span>
                         </div>
                         <div class="banner-img">
-                            <a href="{{ url('product/' .$promos[1]->product->id) }}"><img src="{{ asset("images/products/" .$promos[1]->product->image) }}" alt=""></a>
+                            <a href="{{ url('product_promo/' .$promos[1]->product->id) }}"><img src="{{ asset("images/products/" .$promos[1]->product->image) }}" alt=""></a>
                         </div>
                         <div class="banner-info">
+<<<<<<< HEAD
                             <h3><font color="#7a7979"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
+=======
+                            <h3><font color="#FF7F00"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product_promo/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
+>>>>>>> 4cba29cb2a072925c8f2ab971e75cca0b265eb8e
 
                         </div>
                     </div>

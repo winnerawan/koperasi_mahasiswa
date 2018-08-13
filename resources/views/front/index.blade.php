@@ -35,10 +35,14 @@
                         </div>
                         <div class="banner-info">
 <<<<<<< HEAD
+<<<<<<< HEAD
                             <h3><font color="#7a7979"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
 =======
                             <h3><font color="#FF7F00"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product_promo/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
 >>>>>>> 4cba29cb2a072925c8f2ab971e75cca0b265eb8e
+=======
+                            <h3><font color="#7a7979"><strong> {{ $promos[1]->promo }} <br/><a href="{{ url('product_promo/' .$promos[1]->product->id) }}">{{ $promos[1]->product->name }}</a></strong></font></h3>
+>>>>>>> daf2f61a2a06aba7704891da9c1b6d8c8cad82ae
 
                         </div>
                     </div>

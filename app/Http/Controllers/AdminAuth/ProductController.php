@@ -8,6 +8,7 @@ use App\OrderDetail;
 use App\Product;
 use App\Merchant;
 use App\Http\Controllers\Controller;
+use App\Promo;
 use App\Tax;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -167,10 +168,26 @@ class ProductController extends Controller
     public function sales_detail($id)
     {
         $sales_detail = OrderDetail::with("product")->where("order_id", "=", $id)->get();
+        $promos = Promo::all();
+
         $tax = Tax::first();
+//        $harga_jual = 0;
+//        foreach ($promos as $key => $promo) {
+//            foreach ($sales_detail as $val => $sd) {
+//                if ($sd->product->id == $promo->product_id) {
+//
+//                    $harga_jual = $sd->product->price;
+//                    $sd->product->price = $harga_jual;
+//                } else {
+//                    $harga_jual = $sd->product->price + ($sd->product->price * $tax->tax/100);
+//                    $sd->product->price = $harga_jual;
+//                }
+//            }
+//
+//        }
 //        return $sales_detail;
 //        dd($sales_detail->price);
-        return view('admin.sales_detail')->with(['tax' => $tax, 'sales_detail' => $sales_detail]);
+        return view('admin.sales_detail')->with(['promos' => $promos, 'tax' => $tax, 'sales_detail' => $sales_detail]);
     }
 
     public function invoice($id)
@@ -190,4 +207,5 @@ class ProductController extends Controller
             'data' => $p,
         ]);
     }
+
 }

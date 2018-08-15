@@ -33,10 +33,21 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" >Laporan Penjual</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control report" name="report_merchant" id="report_merchant">
+                                    <select style="margin-bottom: 20px;" class="form-control report" name="report_merchant" id="report_merchant">
                                         <option value="0" data-id="0">--pilih penjual--</option>
                                     @foreach($merchants as $merchant)
                                             <option value="{{ $merchant->id }}" data-id="{{ $merchant->id }}">{{ $merchant->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" >Laporan Laba</label>
+                                <div class="col-sm-6">
+                                    <select  class="form-control profit" name="profit" id="profit">
+                                        @foreach($p_dates as $p_date => $val)
+                                            <option value="{{ $p_date }}" data-id="{{ $p_date }}">{{ $val }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -120,6 +131,22 @@
             window.open('http://localhost:8000/admin/report_monthly', '_blank');
             } else if (url.value == 4) {
             window.open('http://localhost:8000/admin/report_yearly', '_blank');
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+        var ur = document.getElementById('profit');
+        ur.onchange = function() {
+            console.log(url.value);
+            if (ur.value == 1) {
+                window.open('http://localhost:8000/admin/profit_today', '_blank');
+            } else if (ur.value == 2) {
+                window.open('http://localhost:8000/admin/profit_weekly', '_blank');
+            } else if (ur.value == 3) {
+                window.open('http://localhost:8000/admin/profit_monthly', '_blank');
+            } else if (ur.value == 4) {
+                window.open('http://localhost:8000/admin/profit_yearly', '_blank');
             }
         }
     </script>

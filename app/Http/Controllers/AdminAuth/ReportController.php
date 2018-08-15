@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Merchant;
 use App\Order;
 use App\OrderDetail;
+use App\Profit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
@@ -18,10 +19,11 @@ class ReportController extends Controller
     public function index()
     {
         $arr = [ "--pilih laporan--", "Hari ini", "Minggu ini", "Bulan ini", "Tahun ini"];
+        $arr2 = [ "--pilih laporan--", "Hari ini", "Minggu ini", "Bulan ini", "Tahun ini"];
 //        $merchants = Merchant::join('products', 'products.id', '=', 'products.merchant_id')->join('order_details', 'order_details.product_id', '=', 'products.merchant_id')->toSql();
         $merchants = Merchant::all();
 //        dd($arr);
-        return view('admin.report.index')->with(['dates' => $arr, 'merchants' => $merchants]);
+        return view('admin.report.index')->with(['p_dates' => $arr2, 'dates' => $arr, 'merchants' => $merchants]);
     }
 
     public function report_today()
@@ -40,6 +42,86 @@ class ReportController extends Controller
         $fpdf->Ln();
         $this->TableSales($fpdf, $header, $orders);
         $this->totalSales($fpdf, $orders);
+        $this->ttd($fpdf);
+        $fpdf->Output();
+
+    }
+
+    public function profit_today()
+    {
+
+        $profits = Profit::GetProfitToday();
+        $header = array('No', 'Tanggal', 'Keuntungan');
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableProfit($fpdf, $header, $profits);
+        $this->totalProfit($fpdf, $profits);
+        $this->ttd($fpdf);
+        $fpdf->Output();
+
+    }
+
+    public function profit_weekly()
+    {
+
+        $profits = Profit::GetProfitWeekly();
+        $header = array('No', 'Tanggal', 'Keuntungan');
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableProfit($fpdf, $header, $profits);
+        $this->totalProfit($fpdf, $profits);
+        $this->ttd($fpdf);
+        $fpdf->Output();
+
+    }
+
+    public function profit_monthly()
+    {
+
+        $profits = Profit::GetProfitMonthly();
+        $header = array('No', 'Tanggal', 'Keuntungan');
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableProfit($fpdf, $header, $profits);
+        $this->totalProfit($fpdf, $profits);
+        $this->ttd($fpdf);
+        $fpdf->Output();
+
+    }
+
+    public function profit_yearly()
+    {
+
+        $profits = Profit::GetProfitYearly();
+        $header = array('No', 'Tanggal', 'Keuntungan');
+        $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
+        $fpdf->AddPage("P", "A5");
+        $fpdf->SetFont('Courier', 'B', 18);
+        $this->letak($fpdf, "admin/assets/images/deptic.png");
+        $this->judul($fpdf, "KOPERASI TEKNIK INFORMATIKA", "FAKULTAS TEKNIK", "UNIVERSITAS PGRI MADIUN", "Jl. Auri No. 6 Madiun, Jawa Timur, Indonesia", "Telp: 0351-462986 Email: rektorat@unipma.ac.id");
+        $this->garis($fpdf);
+        $fpdf->Cell(1000, 10, "", null);
+        $fpdf->Ln();
+        $this->TableProfit($fpdf, $header, $profits);
+        $this->totalProfit($fpdf, $profits);
         $this->ttd($fpdf);
         $fpdf->Output();
 
@@ -243,6 +325,22 @@ class ReportController extends Controller
 
     }
 
+
+    public function totalProfit(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $data)
+    {
+        $total = 0;
+        $sum = 0;
+        foreach ($data as $row) {
+            $total = $row->profit;
+            $sum += $total;
+        }
+        $total += $total;
+//        $total = array_sum(array_column($data, 'harga'));
+        $fpdf->Cell(-58, 6, "TOTAL ", 'LR', 0, 'R', 0);
+        $fpdf->Cell(0, 6, "Rp. " . $sum, 'LBT', 2, 'R', 1);
+
+    }
+
     // Colored table
     public function TableMerchantEarning(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $header, $data)
     {
@@ -304,5 +402,35 @@ class ReportController extends Controller
         // Closing line
         $fpdf->Cell(array_sum($w), 0, '', 'T');
     }
+
+
+    public function TableProfit(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $header, $data)
+    {
+        // Colors, line width and bold font
+        $fpdf->SetFillColor(128, 191, 255);
+
+        $fpdf->SetLineWidth(.3);
+        $fpdf->SetFont('', 'B');
+        // Header
+        $w = array(10, 60, 58);
+        for ($i = 0; $i < count($header); $i++)
+            $fpdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
+        $fpdf->Ln();
+
+        $fpdf->SetTextColor(0);
+        $fpdf->SetFont('');
+        // Data
+        $fill = false;
+        foreach ($data as $x => $row) {
+            $fpdf->Cell($w[0], 6, $x+1, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[1], 6, Carbon::parse($row->created_at)->format('d-M-Y'), 'LR', 0, 'R', $fill);
+            $fpdf->Cell($w[2], 6, $row->profit, 'LR', 0, 'L', $fill);
+            $fpdf->Ln();
+        }
+        // Closing line
+        $fpdf->Cell(array_sum($w), 0, '', 'T');
+    }
+
+
 
 }

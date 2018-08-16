@@ -14,7 +14,9 @@ class Profit extends Model
 
     public static function GetProfitToday()
     {
-        return DB::select("SELECT * FROM profits WHERE DATE(created_at) = CURDATE()");
+//        return DB::select("SELECT * FROM profits WHERE DATE(created_at) = CURDATE()");
+//        return OrderDetail::with("product")->where(DATE('created_at', '=', CURDATE()))->get();
+        return DB::select("SELECT * FROM order_details INNER JOIN products ON products.id = order_details.product_id WHERE order_details.created_at = CURDATE()");
     }
 
     public static function GetProfitWeekly()
@@ -22,7 +24,7 @@ class Profit extends Model
         $start = Carbon::now()->startOfWeek();
         $end = Carbon::now()->endOfWeek();
 
-        return DB::select("SELECT * FROM profits WHERE created_at BETWEEN  '$start' AND '$end'");
+        return DB::select("SELECT * FROM order_details INNER JOIN products ON products.id = order_details.product_id WHERE order_details.created_at BETWEEN  '$start' AND '$end'");
     }
 
     public static function GetProfitMonthly()
@@ -30,7 +32,7 @@ class Profit extends Model
         $start = Carbon::now()->startOfMonth();
         $end = Carbon::now()->endOfMonth();
 
-        return DB::select("SELECT * FROM profits WHERE created_at BETWEEN  '$start' AND '$end'");
+        return DB::select("SELECT * FROM order_details INNER JOIN products ON products.id = order_details.product_id WHERE order_details.created_at BETWEEN  '$start' AND '$end'");
     }
 
     public static function GetProfitYearly()
@@ -38,6 +40,6 @@ class Profit extends Model
         $start = Carbon::now()->startOfYear();
         $end = Carbon::now()->endOfYear();
 
-        return DB::select("SELECT * FROM profits WHERE created_at BETWEEN  '$start' AND '$end'");
+        return DB::select("SELECT * FROM order_details INNER JOIN products ON products.id = order_details.product_id WHERE order_details.created_at BETWEEN  '$start' AND '$end'");
     }
 }

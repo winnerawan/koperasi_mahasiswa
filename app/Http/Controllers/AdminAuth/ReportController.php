@@ -111,7 +111,7 @@ class ReportController extends Controller
     {
 
         $profits = Profit::GetProfitYearly();
-        $header = array('No', 'Tanggal', 'Keuntungan');
+        $header = array('No', 'Tanggal', 'Nama Barang', "Jumlah", "Harga Beli", "Harga Jual", "Keuntungan");
         $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
         $fpdf->AddPage("P", "A5");
         $fpdf->SetFont('Courier', 'B', 18);
@@ -328,16 +328,43 @@ class ReportController extends Controller
 
     public function totalProfit(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $data)
     {
+        $w = array(10, 16, 30, 18, 18, 18, 18);
+
+        $tax = Tax::all()->first();
         $total = 0;
         $sum = 0;
+        $s_harga_beli = 0;
+        $harga_jual = 0;
+        $sum_hj = 0;
+        $profit = 0;
+        $sum_profit = 0;
+        $sum_hb = 0;
         foreach ($data as $row) {
-            $total = $row->profit;
+            $total = $row->qty;
+            $s_harga_beli = $row->price;
+            $sum_hb += $s_harga_beli;
             $sum += $total;
+            $harga_jual = $row->price + ($row->price * $tax->tax/100);
+            $sum_hj += $harga_jual;
+            $profit = $sum_hj - $sum_hb;
         }
+        for ($i = 0; $i < 7; $i++)
+//            $fpdf->Cell($w[$i], 7, "", 1, 0, 'C', true);
+        $fpdf->Ln();
         $total += $total;
-//        $total = array_sum(array_column($data, 'harga'));
-        $fpdf->Cell(-58, 6, "TOTAL ", 'LR', 0, 'R', 0);
-        $fpdf->Cell(0, 6, "Rp. " . $sum, 'LBT', 2, 'R', 1);
+        $fill = false;
+        foreach ($data as $i => $item) {
+            $fpdf->Cell($w[0], 6, "", '', 0, 'L', $fill);
+            $fpdf->Cell($w[1], 6, "", '', 0, 'L', $fill);
+            $fpdf->Cell($w[2], 6, "TOTAL", 'LRB', 0, 'L', $fill);
+            $fpdf->Cell($w[3], 6, $sum, 'LRB', 0, 'L', true);
+            $fpdf->Cell($w[4], 6, "Rp. ".$sum_hb, 'LRB', 0, 'L', true);
+            $fpdf->Cell($w[5], 6, "Rp. ".$sum_hj, 'LRB', 0, 'L', true);
+            $fpdf->Cell($w[6], 6, "Rp. ".$profit, 'LRB', 0, 'L', true);
+
+        }
+
+
 
     }
 
@@ -407,12 +434,13 @@ class ReportController extends Controller
     public function TableProfit(\Codedge\Fpdf\Fpdf\Fpdf $fpdf, $header, $data)
     {
         // Colors, line width and bold font
+        $tax = Tax::all()->first();
         $fpdf->SetFillColor(128, 191, 255);
 
         $fpdf->SetLineWidth(.3);
         $fpdf->SetFont('', 'B');
         // Header
-        $w = array(10, 60, 58);
+        $w = array(10, 16, 30, 18, 18, 18, 18);
         for ($i = 0; $i < count($header); $i++)
             $fpdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', true);
         $fpdf->Ln();
@@ -424,7 +452,11 @@ class ReportController extends Controller
         foreach ($data as $x => $row) {
             $fpdf->Cell($w[0], 6, $x+1, 'LR', 0, 'L', $fill);
             $fpdf->Cell($w[1], 6, Carbon::parse($row->created_at)->format('d-M-Y'), 'LR', 0, 'R', $fill);
-            $fpdf->Cell($w[2], 6, $row->profit, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[2], 6, $row->name, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[3], 6, $row->qty, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[4], 6, $row->price, 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[5], 6, $row->price + ($row->price * $tax->tax/100), 'LR', 0, 'L', $fill);
+            $fpdf->Cell($w[6], 6, ($row->price + ($row->price * $tax->tax/100) - $row->price), 'LR', 0, 'L', $fill);
             $fpdf->Ln();
         }
         // Closing line

@@ -51,7 +51,7 @@ class ReportController extends Controller
     {
 
         $profits = Profit::GetProfitToday();
-        $header = array('No', 'Tanggal', 'Keuntungan');
+        $header = array('No', 'Tanggal', 'Nama Barang', "Jumlah", "Harga Beli", "Harga Jual", "Keuntungan");
         $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
         $fpdf->AddPage("P", "A5");
         $fpdf->SetFont('Courier', 'B', 18);
@@ -71,7 +71,7 @@ class ReportController extends Controller
     {
 
         $profits = Profit::GetProfitWeekly();
-        $header = array('No', 'Tanggal', 'Keuntungan');
+        $header = array('No', 'Tanggal', 'Nama Barang', "Jumlah", "Harga Beli", "Harga Jual", "Keuntungan");
         $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
         $fpdf->AddPage("P", "A5");
         $fpdf->SetFont('Courier', 'B', 18);
@@ -91,7 +91,7 @@ class ReportController extends Controller
     {
 
         $profits = Profit::GetProfitMonthly();
-        $header = array('No', 'Tanggal', 'Keuntungan');
+        $header = array('No', 'Tanggal', 'Nama Barang', "Jumlah", "Harga Beli", "Harga Jual", "Keuntungan");
         $fpdf = new \Codedge\Fpdf\Fpdf\Fpdf();
         $fpdf->AddPage("P", "A5");
         $fpdf->SetFont('Courier', 'B', 18);
